@@ -24,10 +24,23 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @Entity
 @Table(name = "pets")
 public class Pet extends BaseEntity{
+
+    @Builder
+    public Pet(final Long id, final String name, final PetType petType, final Owner owner,
+               final LocalDate birthDate, final Set<Visit> visits) {
+        super(id);
+        this.name = name;
+        this.petType = petType;
+        this.owner = owner;
+        this.birthDate = birthDate;
+        
+        if (visits == null || visits.size() > 0 ) {
+            this.visits = visits;
+        }
+    }
 
     @Column(name = "name")
     private String name;
