@@ -84,9 +84,7 @@ public class PetController {
     }
 
     @PostMapping("/pets/{petId}/edit")
-    public String processUpdateForm(@PathVariable Long petId, BindingResult result, Owner owner, Model model) {
-        Pet pet = petService.findById(petId);
-
+    public String processUpdateForm(Pet pet, BindingResult result, Owner owner, Model model) {
         if (result.hasErrors()) {
             pet.setOwner(owner);
             model.addAttribute("pet", pet);
